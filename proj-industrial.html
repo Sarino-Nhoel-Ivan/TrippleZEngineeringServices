@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Industrial — Tripple Z Engineering Services</title>
+  <link rel="stylesheet" href="projects.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <nav class="pnav">
+    <a href="index.html" class="pnav-brand">
+      <img src="triplezlogo.jpg" alt="Tripple Z Logo" class="pnav-logo"/>
+      <span><span class="pnav-name">TRIPPLE Z</span><span class="pnav-sub">Engineering Services</span></span>
+    </a>
+    <a href="projects.html" class="pnav-back">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      All Projects
+    </a>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="page-hero-breadcrumb">
+        <a href="index.html">Home</a><span>&#8250;</span>
+        <a href="projects.html">Projects</a><span>&#8250;</span>
+        <span>Industrial</span>
+      </div>
+      <h1>Industrial</h1>
+      <div class="page-hero-line"></div>
+      <p class="page-hero-meta">1 Project</p>
+    </div>
+  </div>
+
+  <div class="page-body">
+    <div class="gallery-section" style="display:block; margin-top:0">
+      <div class="gallery-section-header">
+        <h2>Supply and Installation of Curtain</h2>
+        <span class="gallery-tag">Industrial</span>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-photo" onclick="openLightbox(this)"><img src="projects/industrial/SUPPLY AND INSTALLATION OF CURTAIN/187fbb10-2b67-4169-b739-70c904f640a7.jpg" alt="Photo 1" loading="lazy"/><div class="gallery-photo-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div></div>
+        <div class="gallery-photo" onclick="openLightbox(this)"><img src="projects/industrial/SUPPLY AND INSTALLATION OF CURTAIN/76c27000-02df-4347-9026-145967821a9d.jpg" alt="Photo 2" loading="lazy"/><div class="gallery-photo-zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lb-close" onclick="closeLightbox()">&times;</button>
+    <button class="lb-prev" onclick="lbNav(-1)">&#8249;</button>
+    <button class="lb-next" onclick="lbNav(1)">&#8250;</button>
+    <div class="lightbox-img-wrap">
+      <img id="lb-img" src="" alt=""/>
+      <p class="lightbox-caption" id="lb-caption"></p>
+    </div>
+    <div class="lb-counter" id="lb-counter"></div>
+  </div>
+
+  <script>
+    let lbImgs = [], lbIdx = 0;
+    function openLightbox(el) {
+      lbImgs = Array.from(document.querySelectorAll('.gallery-photo img'));
+      lbIdx  = lbImgs.indexOf(el.querySelector('img'));
+      renderLb();
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); document.body.style.overflow = ''; }
+    function lbNav(dir) { lbIdx = (lbIdx + dir + lbImgs.length) % lbImgs.length; renderLb(); }
+    function renderLb() {
+      document.getElementById('lb-img').src = lbImgs[lbIdx].src;
+      document.getElementById('lb-caption').textContent = lbImgs[lbIdx].alt;
+      document.getElementById('lb-counter').textContent = (lbIdx+1) + ' / ' + lbImgs.length;
+    }
+    document.getElementById('lightbox').addEventListener('click', function(e){ if(e.target===this) closeLightbox(); });
+    document.addEventListener('keydown', e => {
+      if(!document.getElementById('lightbox').classList.contains('open')) return;
+      if(e.key==='Escape') closeLightbox();
+      if(e.key==='ArrowRight') lbNav(1);
+      if(e.key==='ArrowLeft') lbNav(-1);
+    });
+  </script>
+
+</body>
+</html>
